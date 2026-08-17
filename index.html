@@ -263,32 +263,6 @@
   .footer-links{display:flex;gap:22px;}
   .footer-links a:hover{color:#fff;}
 
-  .draft-banner{
-    background:var(--gold);color:#fff;text-align:center;padding:9px 16px;font-size:0.82rem;font-weight:600;
-  }
-
-  #pwGate{
-    position:fixed;inset:0;z-index:1000;background:var(--navy);
-    display:flex;align-items:center;justify-content:center;padding:24px;
-  }
-  #pwGate.unlocked{display:none;}
-  .gate-card{
-    background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.14);
-    border-radius:10px;padding:40px;max-width:340px;width:100%;text-align:center;
-  }
-  .gate-card .logo{justify-content:center;margin-bottom:20px;color:#fff;}
-  .gate-card p{color:#B7C0CD;font-size:0.9rem;margin-bottom:20px;}
-  .gate-card input{
-    width:100%;padding:13px 16px;border-radius:5px;border:1px solid rgba(255,255,255,0.2);
-    background:rgba(255,255,255,0.06);color:#fff;font-size:0.95rem;font-family:inherit;
-    margin-bottom:14px;text-align:center;
-  }
-  .gate-card input::placeholder{color:#8C97A8;}
-  .gate-card button{width:100%;}
-  .gate-error{color:#FF8A80;font-size:0.85rem;margin-top:12px;display:none;}
-  .gate-error.show{display:block;}
-  body.gate-active{overflow:hidden;}
-
   /* ===== INTERACTIONS ===== */
 
   /* scroll reveal */
@@ -419,38 +393,7 @@
   }
 </style>
 </head>
-<body class="gate-active">
-
-<div id="pwGate">
-  <div class="gate-card">
-    <div class="logo">
-      <svg class="logo-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="pinGradGate" x1="20" y1="10" x2="55" y2="58" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#4F8CFF"/>
-            <stop offset="1" stop-color="#6C5CE7"/>
-          </linearGradient>
-        </defs>
-        <rect x="2" y="21" width="9" height="5" rx="2.5" fill="#4F8CFF" opacity="0.3"/>
-        <rect x="15" y="21" width="13" height="5" rx="2.5" fill="#4F8CFF" opacity="0.55"/>
-        <rect x="6" y="33" width="9" height="5" rx="2.5" fill="#4F8CFF" opacity="0.45"/>
-        <rect x="19" y="33" width="12" height="5" rx="2.5" fill="#4F8CFF" opacity="0.8"/>
-        <circle cx="38" cy="35.5" r="3.6" fill="#4F8CFF"/>
-        <path d="M44 13C54 13 60 22 58 31C55 42 46 50 38 56C33 50 27 44 25 37" stroke="url(#pinGradGate)" stroke-width="8.5" stroke-linecap="round"/>
-        <circle cx="38" cy="44" r="3" fill="#0B0F1E"/>
-      </svg>
-      destn<span style="color:var(--gold);">AI</span>
-    </div>
-    <p>This site is in private preview. Enter the password to continue.</p>
-    <form id="gateForm">
-      <input type="password" id="gatePassword" placeholder="Password" autocomplete="off" required>
-      <button class="btn btn-primary" type="submit">Enter</button>
-      <div class="gate-error" id="gateError">Incorrect password — try again.</div>
-    </form>
-  </div>
-</div>
-
-<div class="draft-banner">FIRST DRAFT — placeholder copy, contact email, and stats where marked. Not for public launch yet.</div>
+<body>
 
 <header>
   <nav>
@@ -896,47 +839,17 @@
 <script>
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- password gate ---- */
-  (function(){
-    var GATE_PASS = atob('V2lsbTIwMjY=');
-    var gate = document.getElementById('pwGate');
-    var form = document.getElementById('gateForm');
-    var input = document.getElementById('gatePassword');
-    var error = document.getElementById('gateError');
-
-    function unlock(){
-      gate.classList.add('unlocked');
-      document.body.classList.remove('gate-active');
-      sessionStorage.setItem('destnaiGateOk', '1');
-      revealHero();
-    }
-
-    if(sessionStorage.getItem('destnaiGateOk') === '1'){
-      unlock();
-    }
-
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      if(input.value === GATE_PASS){
-        unlock();
-      } else {
-        error.classList.add('show');
-        input.value = '';
-        input.focus();
-      }
-    });
-  })();
-
-  /* The hero sits behind the gate overlay, so its reveal is triggered on
-     unlock rather than by the observer, which would fire while hidden. */
-  function revealHero(){
+  /* The hero is above the fold, so it plays on load rather than waiting on
+     the scroll observer, which would otherwise fire in the same frame the
+     page paints and skip the transition. */
+  (function revealHero(){
     var els = document.querySelectorAll('.hero .reveal');
     function show(){ els.forEach(function(el){ el.classList.add('in'); }); }
     /* rAF gives the transition a frame to start from; the timeout is a
        fallback because rAF never fires while the tab is backgrounded. */
     requestAnimationFrame(show);
     setTimeout(show, 80);
-  }
+  })();
 
   /* ---- scroll reveal ---- */
   (function(){
