@@ -242,6 +242,17 @@
   input::placeholder,textarea::placeholder{color:#8C97A8;}
   textarea{resize:vertical;min-height:90px;}
   .form-note{font-size:0.78rem;color:#8C97A8;margin-top:2px;}
+  .sr-only{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
+  .hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+  .form-status{font-size:0.85rem;margin-top:4px;min-height:1.2em;}
+  .form-status.ok{color:#9CE8B0;}
+  .form-status.err{color:#FF8A80;}
+  .form-status.warn{color:#FFD08A;}
+  input.invalid,textarea.invalid{border-color:#FF8A80;}
+  #cfSubmit[disabled]{opacity:0.6;cursor:default;}
 
   footer{background:#101B2C;color:#8C97A8;padding:44px 0;font-size:0.85rem;}
   .footer-flex{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
@@ -822,13 +833,27 @@
         <h2>Get Your AI Readiness Score</h2>
         <p>Tell us about your destination and we'll follow up to schedule an intro call and scope your Assessment.</p>
       </div>
-      <form onsubmit="event.preventDefault(); alert('This is a draft site — connect this form to an email service or CRM before launch.');">
-        <input type="text" placeholder="Your name" required>
-        <input type="text" placeholder="Organization / Destination" required>
-        <input type="email" placeholder="Email address" required>
-        <textarea placeholder="What would you like to know?"></textarea>
-        <button class="btn btn-primary" type="submit">Send Message</button>
-        <div class="form-note">Draft placeholder — replace with a real form handler (e.g. Formspree, HubSpot) or mailto link before launch.</div>
+      <form id="contactForm" novalidate>
+        <label class="sr-only" for="cfName">Your name</label>
+        <input type="text" id="cfName" placeholder="Your name" autocomplete="name" required>
+
+        <label class="sr-only" for="cfOrg">Organization / Destination</label>
+        <input type="text" id="cfOrg" placeholder="Organization / Destination" autocomplete="organization" required>
+
+        <label class="sr-only" for="cfEmail">Email address</label>
+        <input type="email" id="cfEmail" placeholder="Email address" autocomplete="email" required>
+
+        <label class="sr-only" for="cfMessage">What would you like to know?</label>
+        <textarea id="cfMessage" placeholder="What would you like to know?"></textarea>
+
+        <!-- Honeypot: hidden from people, tempting to bots. A filled value is spam. -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="cfCompanyUrl">Leave this field empty</label>
+          <input type="text" id="cfCompanyUrl" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button class="btn btn-primary" id="cfSubmit" type="submit">Send Message</button>
+        <div class="form-status" id="cfStatus" role="status" aria-live="polite"></div>
       </form>
     </div>
   </div>
@@ -1054,6 +1079,116 @@
       }
     });
   });
+
+  /* ---- contact form -> Google Forms ----------------------------------------
+     Fill these in from the form's "Get pre-filled link" URL:
+       formId  = the long id between /forms/d/e/ and /viewform
+       fields  = the entry.NNNNNNN key for each question, in the same order
+     Until formId is filled in the form refuses to submit rather than
+     reporting a false success, so leads can't vanish silently.
+  --------------------------------------------------------------------------*/
+  var GOOGLE_FORM = {
+    formId: 'PASTE_FORM_ID_HERE',
+    fields: {
+      name:    'entry.PASTE_NAME_ID',
+      org:     'entry.PASTE_ORG_ID',
+      email:   'entry.PASTE_EMAIL_ID',
+      message: 'entry.PASTE_MESSAGE_ID'
+    }
+  };
+
+  (function(){
+    var form = document.getElementById('contactForm');
+    if(!form) return;
+
+    var status  = document.getElementById('cfStatus');
+    var submit  = document.getElementById('cfSubmit');
+    var honey   = document.getElementById('cfCompanyUrl');
+    var inputs  = {
+      name:    document.getElementById('cfName'),
+      org:     document.getElementById('cfOrg'),
+      email:   document.getElementById('cfEmail'),
+      message: document.getElementById('cfMessage')
+    };
+
+    function configured(){
+      return GOOGLE_FORM.formId.indexOf('PASTE') === -1;
+    }
+
+    function say(msg, kind){
+      status.textContent = msg;
+      status.className = 'form-status' + (kind ? ' ' + kind : '');
+    }
+
+    function validate(){
+      var problems = [];
+      [['name','your name'],['org','your organization'],['email','your email address']]
+        .forEach(function(pair){
+          var el = inputs[pair[0]];
+          var empty = !el.value.trim();
+          el.classList.toggle('invalid', empty);
+          if(empty) problems.push(pair[1]);
+        });
+      var email = inputs.email.value.trim();
+      if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+        inputs.email.classList.add('invalid');
+        problems.push('a valid email address');
+      }
+      return problems;
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      /* Bots fill every field they find, including the hidden one. Show them
+         the same success text so they don't retry, but send nothing. */
+      if(honey.value){
+        say('Thanks — we’ll be in touch shortly.', 'ok');
+        form.reset();
+        return;
+      }
+
+      var problems = validate();
+      if(problems.length){
+        say('Please add ' + problems.join(', ') + '.', 'err');
+        return;
+      }
+
+      if(!configured()){
+        say('This form isn’t connected yet — please email us directly for now.', 'warn');
+        return;
+      }
+
+      var body = new URLSearchParams();
+      body.append(GOOGLE_FORM.fields.name,    inputs.name.value.trim());
+      body.append(GOOGLE_FORM.fields.org,     inputs.org.value.trim());
+      body.append(GOOGLE_FORM.fields.email,   inputs.email.value.trim());
+      body.append(GOOGLE_FORM.fields.message, inputs.message.value.trim());
+
+      submit.disabled = true;
+      say('Sending…');
+
+      /* Google doesn't send CORS headers, so the response is opaque: we can
+         confirm the request left the browser, not that Google accepted it. */
+      fetch('https://docs.google.com/forms/d/e/' + GOOGLE_FORM.formId + '/formResponse', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: body
+      }).then(function(){
+        form.reset();
+        say('Thanks — we’ll be in touch shortly.', 'ok');
+      }).catch(function(){
+        say('Something went wrong sending that. Please try again, or email us directly.', 'err');
+      }).then(function(){
+        submit.disabled = false;
+      });
+    });
+
+    /* Clear the error styling as soon as someone starts fixing the field. */
+    Object.keys(inputs).forEach(function(k){
+      inputs[k].addEventListener('input', function(){ inputs[k].classList.remove('invalid'); });
+    });
+  })();
 </script>
 
 </body>
