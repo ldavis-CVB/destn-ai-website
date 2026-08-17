@@ -58,9 +58,12 @@
     backdrop-filter:blur(6px);border-bottom:1px solid var(--border);
   }
   nav{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1120px;margin:0 auto;}
-  .logo{font-size:1.5rem;font-weight:800;color:var(--navy);letter-spacing:-0.5px;display:flex;align-items:center;gap:9px;}
+  /* No flex gap here: "destn" is a bare text node and becomes its own flex
+     item, so a gap would also open up between "destn" and "AI". The icon
+     carries its own spacing instead, keeping the wordmark solid. */
+  .logo{font-size:1.5rem;font-weight:800;color:var(--navy);letter-spacing:-0.5px;display:flex;align-items:center;}
   .logo span{color:var(--gold);}
-  .logo-mark{width:30px;height:30px;flex-shrink:0;}
+  .logo-mark{width:30px;height:30px;flex-shrink:0;margin-right:9px;}
   .nav-links{display:flex;gap:34px;align-items:center;font-weight:600;font-size:0.94rem;color:var(--navy);}
   .nav-links a:hover{color:var(--gold);}
   .nav-cta{background:var(--navy);color:#fff;padding:10px 22px;border-radius:4px;font-size:0.9rem;font-weight:600;}
