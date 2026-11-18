@@ -26,7 +26,7 @@
       "@id": "https://www.destn-ai.com/#organization",
       "name": "destnAI",
       "url": "https://www.destn-ai.com/",
-      "description": "An AI enablement consulting firm for destination organizations. destnAI functions as a destination's AI team the way a managed service provider runs a company's network, covering governance, staff training, workflow automation, AI tool administration, and AI visibility.",
+      "description": "An AI enablement consulting firm for destination organizations. destnAI functions as a destination's AI team the way a managed service provider runs a company's network, covering governance, staff training, workflow automation, AI tool administration, and AI visibility. destnAI also builds destnCRM, a CRM platform for DMOs currently in pilot.",
       "slogan": "The AI team for destination organizations",
       "sameAs": [
         "https://www.linkedin.com/company/destnai/"
@@ -47,7 +47,10 @@
         "Destination marketing",
         "Tourism industry technology",
         "Workflow automation",
-        "Structured data and entity management"
+        "Structured data and entity management",
+        "Destination CRM software",
+        "Partner and listing data management",
+        "Group sales and RFP management for destinations"
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -110,24 +113,33 @@
       "url": "https://www.destn-ai.com/",
       "name": "destnAI",
       "inLanguage": "en-US",
-      "publisher": { "@id": "https://www.destn-ai.com/#organization" }
+      "publisher": {
+        "@id": "https://www.destn-ai.com/#organization"
+      }
     },
     {
-      "@type": ["WebPage", "FAQPage"],
+      "@type": [
+        "WebPage",
+        "FAQPage"
+      ],
       "@id": "https://www.destn-ai.com/#webpage",
       "url": "https://www.destn-ai.com/",
       "name": "destnAI — AI Destination Strategies for DMOs",
       "description": "destnAI functions as your destination organization's AI team — governance, staff training, workflow automation, and AI visibility for DMOs, CVBs, and state tourism offices.",
       "inLanguage": "en-US",
-      "isPartOf": { "@id": "https://www.destn-ai.com/#website" },
-      "about": { "@id": "https://www.destn-ai.com/#organization" },
+      "isPartOf": {
+        "@id": "https://www.destn-ai.com/#website"
+      },
+      "about": {
+        "@id": "https://www.destn-ai.com/#organization"
+      },
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Is this just another dashboard?",
+          "name": "Is the consulting just a way to sell me your CRM?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No — we're not a software company and we don't sell a platform, so we're completely vendor-agnostic about what you use. We recommend and help administer whatever tools genuinely fit your organization, and our work is the strategy, governance, training, and administration layer around them."
+            "text": "No. Consulting is the main business and it stands on its own: engagements never require destnCRM, and most of what we do — governance, training, workflow automation, AI visibility — has nothing to do with it. When you ask us what tool to use, you get a straight answer, including when that answer is a competitor's product or the platform you already run."
           }
         },
         {
@@ -135,7 +147,15 @@
           "name": "Who pays for the AI tools we use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "You do, directly with the vendor. destnAI is granted delegated administrator access inside your own accounts — we never appear on a technology invoice."
+            "text": "You do, directly with the vendor. destnAI is granted delegated administrator access inside your own accounts, and we don't resell or mark up third-party tools. The one thing you could ever buy from us is destnCRM, and that is always a separate decision from a consulting engagement."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When can we get destnCRM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It's in active development and not generally available yet. We're taking on a small number of pilot destinations to pressure-test it against real partner data and real migrations before a wider release. If that sounds like your organization, get in touch and we'll walk you through where it stands."
           }
         },
         {
@@ -219,7 +239,7 @@
   .logo{font-size:1.5rem;font-weight:800;color:var(--navy);letter-spacing:-0.5px;display:flex;align-items:center;}
   .logo span{color:var(--gold);}
   .logo-mark{width:30px;height:30px;flex-shrink:0;margin-right:9px;}
-  .nav-links{display:flex;gap:34px;align-items:center;font-weight:600;font-size:0.94rem;color:var(--navy);}
+  .nav-links{display:flex;gap:26px;align-items:center;font-weight:600;font-size:0.94rem;color:var(--navy);}
   .nav-links a:hover{color:var(--gold);}
   .nav-cta{background:var(--navy);color:#fff;padding:10px 22px;border-radius:4px;font-size:0.9rem;font-weight:600;}
   .nav-cta:hover{background:var(--navy-light);}
@@ -420,6 +440,35 @@
   .footer-social{display:inline-flex;align-items:center;gap:7px;transition:color .2s ease;}
   .footer-social svg{width:15px;height:15px;flex-shrink:0;}
 
+  /* CRM */
+  .crm{background:#fff;}
+  .crm-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px;}
+  .crm-badge{
+    display:inline-block;background:var(--accent-grad);color:#fff;border-radius:20px;
+    padding:5px 14px;font-size:0.68rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  }
+  .crm-panel{
+    margin-top:40px;border:1px solid var(--border);border-radius:14px;overflow:hidden;
+    background:linear-gradient(160deg,#F7F9FF 0%,#FFFFFF 60%);
+  }
+  .crm-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;}
+  .crm-feature{padding:30px 32px;border-bottom:1px solid var(--border);}
+  .crm-feature:nth-child(odd){border-right:1px solid var(--border);}
+  .crm-feature:nth-child(n+3){border-bottom:none;}
+  .crm-feature h3{font-size:1.05rem;margin-bottom:6px;}
+  .crm-feature p{color:var(--gray);font-size:0.93rem;}
+  .crm-feature .tag{
+    display:block;font-size:0.72rem;font-weight:800;letter-spacing:1px;
+    text-transform:uppercase;color:var(--gold);margin-bottom:9px;
+  }
+  .crm-pilot{
+    margin-top:36px;background:var(--navy);border-radius:12px;padding:36px 40px;color:#fff;
+    display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;
+  }
+  .crm-pilot h3{color:#fff;font-size:1.25rem;margin-bottom:8px;}
+  .crm-pilot p{color:#C9D0DA;font-size:0.95rem;margin:0;}
+  .crm-pilot .btn{white-space:nowrap;}
+
   /* ===== INTERACTIONS ===== */
 
   /* scroll reveal */
@@ -536,15 +585,26 @@
     .steps{grid-template-columns:repeat(2,1fr);}
     .score-flex{grid-template-columns:1fr;}
     .price-grid{grid-template-columns:1fr;}
+    .crm-grid{grid-template-columns:1fr;}
+    .crm-feature:nth-child(odd){border-right:none;}
+    .crm-feature:nth-child(3){border-bottom:1px solid var(--border);}
+    .crm-pilot{grid-template-columns:1fr;padding:30px 28px;}
   }
-  @media(max-width:640px){
-    section{padding:64px 0;}
+  /* Seven nav items plus the CTA need ~1040px to stay on one row. Collapse to
+     the menu above that threshold rather than letting the header wrap into
+     three stacked rows at tablet and small-laptop widths. */
+  @media(max-width:1100px){
     .nav-links{
       position:absolute;top:100%;left:0;right:0;background:var(--cream);flex-direction:column;
-      padding:20px 24px;border-bottom:1px solid var(--border);display:none;gap:18px;
+      align-items:flex-start;padding:20px 24px;border-bottom:1px solid var(--border);
+      display:none;gap:18px;
     }
     .nav-links.open{display:flex;}
     .nav-toggle{display:block;}
+  }
+
+  @media(max-width:640px){
+    section{padding:64px 0;}
     .steps{grid-template-columns:1fr;}
     .contact-box{padding:32px;}
   }
@@ -577,7 +637,8 @@
       <a href="#services">Services</a>
       <a href="#process">How It Works</a>
       <a href="#score">AI Readiness Score</a>
-      <a href="#pricing">Engagement Options</a>
+      <a href="#pricing">Engagement</a>
+      <a href="#destncrm">destnCRM</a>
       <a href="#about">About</a>
       <a href="#faq">FAQ</a>
       <a class="nav-cta" href="#contact">Get Assessed</a>
@@ -597,7 +658,7 @@
         <a class="btn btn-primary" href="#contact">Talk to Us</a>
         <a class="btn btn-outline" href="#process">See How It Works</a>
       </div>
-      <div class="hero-note reveal" data-delay="4">Not a software company. Just your AI team — software recommendations, governance, administration, and training.</div>
+      <div class="hero-note reveal" data-delay="4">Consulting is the main work — tool recommendations, governance, administration, and training. We also build <a href="#destncrm" style="color:var(--gold-light);text-decoration:underline;">destnCRM</a>, now looking for pilot destinations.</div>
     </div>
     <div class="hero-graphic">
       <svg viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -889,19 +950,63 @@
   </div>
 </section>
 
+<section class="crm" id="destncrm">
+  <div class="wrap">
+    <div class="crm-head reveal">
+      <span class="eyebrow" style="margin-bottom:0;">destnCRM</span>
+      <span class="crm-badge">Coming Soon</span>
+    </div>
+    <h2 class="reveal" data-delay="1">The Destination CRM, Rebuilt</h2>
+    <p class="lead reveal" data-delay="2">Most DMOs run on the industry-standard destination CRM, and most of them quietly work around it. destnCRM is our answer: the same core jobs — partners, listings, events, group sales — in software that looks like it was built this decade, with AI that keeps the data current instead of asking your staff to.</p>
+
+    <div class="crm-panel reveal" data-delay="3">
+      <div class="crm-grid">
+        <div class="crm-feature">
+          <span class="tag">The difference</span>
+          <h3>Listings That Maintain Themselves</h3>
+          <p>AI monitors your partners' own websites and public sources, then flags or updates stale listings, hours, amenities, and events. The directory stops drifting out of date between audits.</p>
+        </div>
+        <div class="crm-feature">
+          <span class="tag">Partners</span>
+          <h3>Partners and Listings</h3>
+          <p>Businesses, contacts, listings, and activity history in one record. No dues, renewals, or membership tiers to administer — just who your partners are and what's happening with them.</p>
+        </div>
+        <div class="crm-feature">
+          <span class="tag">Group sales</span>
+          <h3>Leads, RFPs, and Planners</h3>
+          <p>A sales pipeline built for destination work: planner accounts, lead distribution out to partner hotels, room blocks and peak nights, and traces that actually get followed up.</p>
+        </div>
+        <div class="crm-feature">
+          <span class="tag">Reporting</span>
+          <h3>Numbers Your Board Will Read</h3>
+          <p>Website performance, listing engagement, and partner referrals, reported in plain language — without a reporting module that needs its own training session.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="crm-pilot reveal">
+      <div>
+        <h3>We're looking for pilot destinations</h3>
+        <p>destnCRM is in active development and we want it pressure-tested by real DMOs with real partner data and real messes to migrate — not a demo dataset. Pilot organizations get hands-on input into what gets built, and we do the migration work.</p>
+      </div>
+      <a class="btn btn-primary" href="#contact" data-prefill="I'd like to hear more about the destnCRM pilot program.">Ask About the Pilot</a>
+    </div>
+  </div>
+</section>
+
 <section class="about" id="about">
   <div class="wrap about-flex">
     <div>
       <span class="eyebrow reveal">Why destnAI</span>
       <h2 class="reveal" data-delay="1">Built by Someone Who's Actually Run These Systems</h2>
       <p class="reveal" data-delay="2">Most AI consultants understand artificial intelligence. Most tourism consultants understand destinations. Very few people understand both — plus the industry-standard destination CMS/CRM platform most DMOs already run on, the partner data ecosystems built around it, and the board reporting cycles that define how a DMO actually operates.</p>
-      <p class="reveal" data-delay="3">destnAI is built on that combination. We're not a search or GEO agency doing AI on the side, and we're not a software vendor with our own dashboard to protect — we function as your organization's AI team, the way a managed service provider runs your network, except this one is built only for DMOs.</p>
+      <p class="reveal" data-delay="3">destnAI is built on that combination. We're not a search or GEO agency doing AI on the side — we function as your organization's AI team, the way a managed service provider runs your network, except this one is built only for DMOs. We do build our own software in destnCRM, and we keep that separate: consulting engagements never require it, and we'll tell you plainly when someone else's tool is the better fit.</p>
     </div>
     <div class="about-stats">
       <div class="stat-box reveal" data-delay="1"><div class="num" data-count="6">6</div><div class="lbl">Service pillars, one team</div></div>
       <div class="stat-box reveal" data-delay="2"><div class="num">MSP</div><div class="lbl">Model, built only for DMOs</div></div>
       <div class="stat-box reveal" data-delay="3"><div class="num" data-count="5">5</div><div class="lbl">AI engines tested per assessment</div></div>
-      <div class="stat-box reveal" data-delay="4"><div class="num" data-count="100" data-suffix="%">100%</div><div class="lbl">Vendor-agnostic recommendations</div></div>
+      <div class="stat-box reveal" data-delay="4"><div class="num" data-count="100" data-suffix="%">100%</div><div class="lbl">Independent tool recommendations</div></div>
     </div>
   </div>
 </section>
@@ -911,14 +1016,18 @@
     <span class="eyebrow reveal">FAQ</span>
     <h2 class="reveal" data-delay="1">Common Questions</h2>
     <div class="faq-item reveal" data-delay="1">
-      <div class="faq-q">Is this just another dashboard? <span class="plus">+</span></div>
-      <div class="faq-a"><p>No — we're not a software company and we don't sell a platform, so we're completely vendor-agnostic about what you use. We recommend and help administer whatever tools genuinely fit your organization, and our work is the strategy, governance, training, and administration layer around them.</p></div>
+      <div class="faq-q">Is the consulting just a way to sell me your CRM? <span class="plus">+</span></div>
+      <div class="faq-a"><p>No. Consulting is the main business and it stands on its own: engagements never require destnCRM, and most of what we do — governance, training, workflow automation, AI visibility — has nothing to do with it. When you ask us what tool to use, you get a straight answer, including when that answer is a competitor's product or the platform you already run.</p></div>
     </div>
     <div class="faq-item reveal" data-delay="2">
       <div class="faq-q">Who pays for the AI tools we use? <span class="plus">+</span></div>
-      <div class="faq-a"><p>You do, directly with the vendor. destnAI is granted delegated administrator access inside your own accounts — we never appear on a technology invoice.</p></div>
+      <div class="faq-a"><p>You do, directly with the vendor. destnAI is granted delegated administrator access inside your own accounts, and we don't resell or mark up third-party tools. The one thing you could ever buy from us is destnCRM, and that is always a separate decision from a consulting engagement.</p></div>
     </div>
     <div class="faq-item reveal" data-delay="3">
+      <div class="faq-q">When can we get destnCRM? <span class="plus">+</span></div>
+      <div class="faq-a"><p>It's in active development and not generally available yet. We're taking on a small number of pilot destinations to pressure-test it against real partner data and real migrations before a wider release. If that sounds like your organization, get in touch and we'll walk you through where it stands.</p></div>
+    </div>
+    <div class="faq-item reveal" data-delay="4">
       <div class="faq-q">How long does an Assessment take? <span class="plus">+</span></div>
       <div class="faq-a"><p>Typically 3–5 weeks from kickoff to a delivered scorecard, findings report, and 90-day roadmap.</p></div>
     </div>
@@ -985,6 +1094,7 @@
     <div class="footer-links">
       <a href="#services">Services</a>
       <a href="#pricing">Engagement Options</a>
+      <a href="#destncrm">destnCRM</a>
       <a href="#about">About</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
@@ -1141,6 +1251,17 @@
   });
   document.querySelectorAll('.nav-links a').forEach(function(a){
     a.addEventListener('click', function(){ document.getElementById('navLinks').classList.remove('open'); });
+  });
+
+  /* ---- pilot CTA drops a label into the contact form so enquiries arrive
+         tagged in the sheet instead of arriving blank ---- */
+  document.querySelectorAll('[data-prefill]').forEach(function(link){
+    link.addEventListener('click', function(){
+      var box = document.getElementById('cfMessage');
+      if(box && !box.value.trim()){
+        box.value = link.getAttribute('data-prefill');
+      }
+    });
   });
 
   /* ---- FAQ accordion; max-height is measured so long answers aren't clipped ---- */
