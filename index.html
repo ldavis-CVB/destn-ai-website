@@ -469,6 +469,207 @@
   .crm-pilot p{color:#C9D0DA;font-size:0.95rem;margin:0;}
   .crm-pilot .btn{white-space:nowrap;}
 
+  /* ===== destnCRM INTERACTIVE DEMO =====
+     Self-contained mock of the destnCRM UI. All selectors are scoped under
+     .crm-demo so the app's visual language can't leak into the marketing page. */
+  .crm-demo{
+    --d-navy:#0e1a2e; --d-navy-800:#1c2d4a; --d-navy-700:#263a5c;
+    --d-brand:#1f6feb; --d-brand-50:#eaf2ff; --d-line:#e4e8f0; --d-ink:#0f172a;
+    --d-muted:#64748b; --d-canvas:#f4f6fb;
+    margin-top:40px;border-radius:14px;overflow:hidden;
+    border:1px solid var(--border);box-shadow:0 22px 50px rgba(16,22,43,0.13);
+    background:#fff;
+  }
+  .crm-chrome{
+    display:flex;align-items:center;gap:10px;padding:11px 16px;
+    background:#eef1f7;border-bottom:1px solid var(--d-line);
+  }
+  .crm-dot{width:10px;height:10px;border-radius:50%;background:#cbd3e1;flex-shrink:0;}
+  .crm-url{
+    flex:1;background:#fff;border:1px solid var(--d-line);border-radius:6px;
+    padding:5px 12px;font-size:0.76rem;color:var(--d-muted);text-align:center;
+  }
+  .crm-chrome-tag{
+    font-size:0.66rem;font-weight:800;letter-spacing:0.6px;text-transform:uppercase;
+    color:var(--d-brand);background:var(--d-brand-50);padding:4px 9px;border-radius:20px;white-space:nowrap;
+  }
+  .crm-app{display:grid;grid-template-columns:208px 1fr;min-height:560px;}
+
+  .crm-side{background:var(--d-navy);padding:18px 12px;display:flex;flex-direction:column;}
+  .crm-side-brand{
+    display:flex;align-items:center;gap:8px;color:#fff;font-weight:800;
+    font-size:1rem;padding:0 8px 16px;letter-spacing:-0.3px;
+  }
+  .crm-side-brand span{color:#6aa5ff;}
+  .crm-navbtn{
+    display:flex;align-items:center;gap:10px;width:100%;text-align:left;
+    background:none;border:0;color:#9db0cc;font-family:inherit;font-size:0.84rem;
+    font-weight:600;padding:9px 10px;border-radius:7px;cursor:pointer;
+    transition:background .18s ease,color .18s ease;
+  }
+  .crm-navbtn:hover{background:var(--d-navy-800);color:#fff;}
+  .crm-navbtn[aria-selected="true"]{background:var(--d-brand);color:#fff;}
+  .crm-navbtn .ic{width:15px;height:15px;flex-shrink:0;}
+  .crm-navbtn.is-locked{opacity:0.42;cursor:default;}
+  .crm-navbtn.is-locked:hover{background:none;color:#9db0cc;}
+  .crm-side-rule{height:1px;background:rgba(255,255,255,0.09);margin:12px 8px;}
+  .crm-user{
+    margin-top:auto;display:flex;align-items:center;gap:9px;padding:10px 8px 0;
+    border-top:1px solid rgba(255,255,255,0.09);
+  }
+  .crm-avatar{
+    width:29px;height:29px;border-radius:50%;background:linear-gradient(135deg,#1f6feb,#6C5CE7);
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:0.72rem;font-weight:800;flex-shrink:0;
+  }
+  .crm-user-name{color:#fff;font-size:0.78rem;font-weight:700;line-height:1.25;}
+  .crm-user-org{color:#8fa3c0;font-size:0.7rem;line-height:1.25;}
+
+  .crm-main{background:var(--d-canvas);padding:20px;overflow:hidden;}
+  .crm-view{display:none;}
+  .crm-view.active{display:block;}
+
+  .crm-hero{
+    border-radius:12px;padding:22px 24px;color:#fff;margin-bottom:16px;
+    background:linear-gradient(110deg,#0e1a2e 0%,#1c2d4a 52%,#2d5f8a 100%);
+  }
+  .crm-hero h4{color:#fff;font-size:1.3rem;margin-bottom:3px;letter-spacing:-0.3px;}
+  .crm-hero p{color:rgba(255,255,255,0.82);font-size:0.84rem;margin:0;}
+
+  .crm-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;}
+  .crm-card{background:#fff;border:1px solid var(--d-line);border-radius:10px;padding:14px;}
+  .crm-stat-lbl{font-size:0.7rem;color:var(--d-muted);font-weight:600;margin-bottom:5px;line-height:1.3;}
+  .crm-stat-val{font-size:1.5rem;font-weight:800;color:var(--d-ink);line-height:1.1;letter-spacing:-0.5px;}
+  .crm-stat-foot{display:flex;align-items:center;justify-content:space-between;margin-top:7px;gap:8px;}
+  .crm-delta{font-size:0.7rem;font-weight:800;}
+  .crm-delta.up{color:#16a34a;}
+  .crm-spark{width:54px;height:18px;flex-shrink:0;}
+
+  .crm-cols{display:grid;grid-template-columns:1.25fr 1fr;gap:12px;}
+  .crm-card h5{
+    font-size:0.82rem;color:var(--d-ink);margin-bottom:12px;font-weight:800;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .crm-card h5 em{font-style:normal;font-size:0.7rem;color:var(--d-muted);font-weight:600;}
+
+  .crm-pipe{margin-bottom:11px;}
+  .crm-pipe-top{display:flex;justify-content:space-between;font-size:0.76rem;margin-bottom:4px;color:#334155;font-weight:600;}
+  .crm-pipe-track{height:7px;border-radius:5px;background:#e8edf6;overflow:hidden;}
+  .crm-pipe-fill{height:100%;border-radius:5px;background:var(--d-brand);transition:width .9s cubic-bezier(.22,.61,.36,1);}
+
+  .crm-feed{list-style:none;margin:0;}
+  .crm-feed li{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid #eef1f7;}
+  .crm-feed li:last-child{border-bottom:0;}
+  .crm-feed .fi{
+    width:26px;height:26px;border-radius:7px;flex-shrink:0;display:flex;
+    align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;
+  }
+  .crm-feed .ft{font-size:0.79rem;color:var(--d-ink);font-weight:600;line-height:1.35;}
+  .crm-feed .fs{font-size:0.72rem;color:var(--d-muted);}
+
+  .crm-table{width:100%;border-collapse:collapse;}
+  .crm-table th{
+    text-align:left;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.7px;
+    color:var(--d-muted);padding:0 10px 9px;border-bottom:1px solid var(--d-line);font-weight:800;
+  }
+  .crm-table td{padding:11px 10px;border-bottom:1px solid #eef1f7;font-size:0.82rem;color:#1e293b;}
+  .crm-row{cursor:pointer;transition:background .15s ease;}
+  .crm-row:hover{background:var(--d-brand-50);}
+  .crm-pname{font-weight:700;color:var(--d-ink);}
+  .crm-psub{font-size:0.72rem;color:var(--d-muted);}
+  .crm-chip{
+    display:inline-block;font-size:0.67rem;font-weight:800;padding:3px 8px;border-radius:20px;
+    background:#e8f6ee;color:#15803d;white-space:nowrap;
+  }
+  .crm-chip.warn{background:#fff3e0;color:#b45309;}
+  .crm-flag{
+    display:inline-flex;align-items:center;gap:5px;font-size:0.7rem;font-weight:800;
+    color:var(--d-brand);background:var(--d-brand-50);padding:3px 9px;border-radius:20px;white-space:nowrap;
+  }
+
+  .crm-back{
+    background:none;border:0;color:var(--d-brand);font-family:inherit;font-size:0.79rem;
+    font-weight:700;cursor:pointer;padding:0 0 11px;
+  }
+  .crm-detail-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:13px;}
+  .crm-detail-head h4{font-size:1.15rem;margin-bottom:3px;}
+  .crm-detail-head p{font-size:0.79rem;color:var(--d-muted);margin:0;}
+  .crm-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;}
+  .crm-metric{background:#fff;border:1px solid var(--d-line);border-radius:9px;padding:11px 13px;}
+  .crm-metric .mv{font-size:1.15rem;font-weight:800;color:var(--d-ink);letter-spacing:-0.4px;}
+  .crm-metric .ml{font-size:0.68rem;color:var(--d-muted);font-weight:600;margin-top:1px;}
+
+  .crm-ai{border:1px solid #c9ddff;border-radius:10px;background:linear-gradient(160deg,#f3f8ff,#fff 65%);padding:15px;}
+  .crm-ai-head{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+  .crm-ai-head strong{font-size:0.85rem;color:var(--d-ink);}
+  .crm-ai-sub{font-size:0.74rem;color:var(--d-muted);margin-bottom:12px;}
+  .crm-sugg{
+    background:#fff;border:1px solid var(--d-line);border-radius:8px;padding:11px 13px;margin-bottom:9px;
+    transition:opacity .3s ease,transform .3s ease;
+  }
+  .crm-sugg:last-of-type{margin-bottom:0;}
+  .crm-sugg-field{font-size:0.66rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--d-muted);margin-bottom:5px;}
+  .crm-sugg-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:0.8rem;}
+  .crm-was{color:#94a3b8;text-decoration:line-through;}
+  .crm-now{color:var(--d-ink);font-weight:700;}
+  .crm-src{font-size:0.7rem;color:var(--d-muted);margin-top:6px;}
+  .crm-sugg-acts{display:flex;gap:7px;margin-top:10px;}
+  .crm-btn{
+    font-family:inherit;font-size:0.74rem;font-weight:700;border-radius:6px;
+    padding:6px 13px;cursor:pointer;border:1px solid transparent;transition:all .16s ease;
+  }
+  .crm-btn.primary{background:var(--d-brand);color:#fff;}
+  .crm-btn.primary:hover{background:#1a5fd0;}
+  .crm-btn.ghost{background:#fff;border-color:var(--d-line);color:#475569;}
+  .crm-btn.ghost:hover{border-color:#b9c4d6;}
+  .crm-sugg.resolved{opacity:0;transform:translateX(14px);pointer-events:none;}
+  .crm-ai-done{
+    display:none;text-align:center;padding:16px;color:#15803d;font-weight:700;font-size:0.84rem;
+  }
+  .crm-ai-done.show{display:block;}
+
+  .crm-chat{display:flex;flex-direction:column;gap:11px;}
+  .crm-msg{max-width:78%;padding:11px 14px;border-radius:12px;font-size:0.83rem;line-height:1.5;}
+  .crm-msg.them{background:#fff;border:1px solid var(--d-line);color:#1e293b;border-bottom-left-radius:4px;}
+  .crm-msg.me{background:var(--d-brand);color:#fff;align-self:flex-end;border-bottom-right-radius:4px;}
+  .crm-msg ul{margin:7px 0 0 16px;}
+  .crm-msg li{margin-bottom:3px;}
+  .crm-ask{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+  .crm-ask button{
+    background:#fff;border:1px solid var(--d-line);border-radius:20px;padding:7px 13px;
+    font-family:inherit;font-size:0.76rem;color:#475569;cursor:pointer;font-weight:600;
+    transition:all .16s ease;
+  }
+  .crm-ask button:hover{border-color:var(--d-brand);color:var(--d-brand);}
+  .crm-ask button[disabled]{opacity:0.4;cursor:default;}
+  .crm-typing span{
+    display:inline-block;width:5px;height:5px;border-radius:50%;background:#94a3b8;margin-right:3px;
+    animation:crmBlink 1.3s infinite;
+  }
+  .crm-typing span:nth-child(2){animation-delay:.18s;}
+  .crm-typing span:nth-child(3){animation-delay:.36s;}
+  @keyframes crmBlink{0%,60%,100%{opacity:.25;}30%{opacity:1;}}
+
+  .crm-demo-note{
+    text-align:center;font-size:0.8rem;color:var(--gray);margin-top:14px;
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    .crm-pipe-fill,.crm-sugg{transition:none;}
+    .crm-typing span{animation:none;opacity:.6;}
+  }
+
+  @media(max-width:860px){
+    .crm-app{grid-template-columns:1fr;min-height:0;}
+    .crm-side{flex-direction:row;align-items:center;gap:6px;padding:10px;overflow-x:auto;}
+    .crm-side-brand,.crm-side-rule,.crm-user,.crm-navbtn.is-locked{display:none;}
+    .crm-navbtn{width:auto;white-space:nowrap;padding:7px 12px;}
+    .crm-stats{grid-template-columns:repeat(2,1fr);}
+    .crm-cols{grid-template-columns:1fr;}
+    .crm-metrics{grid-template-columns:1fr;}
+    .crm-msg{max-width:92%;}
+  }
+
   /* ===== INTERACTIONS ===== */
 
   /* scroll reveal */
@@ -959,6 +1160,191 @@
     <h2 class="reveal" data-delay="1">The Destination CRM, Rebuilt</h2>
     <p class="lead reveal" data-delay="2">Most DMOs run on the industry-standard destination CRM, and most of them quietly work around it. destnCRM is our answer: the same core jobs — partners, listings, events, group sales — in software that looks like it was built this decade, with AI that keeps the data current instead of asking your staff to.</p>
 
+    <div class="crm-demo reveal" data-delay="3">
+      <div class="crm-chrome">
+        <span class="crm-dot"></span><span class="crm-dot"></span><span class="crm-dot"></span>
+        <span class="crm-url">app.destncrm.com</span>
+        <span class="crm-chrome-tag">Interactive demo · sample data</span>
+      </div>
+
+      <div class="crm-app">
+        <aside class="crm-side" role="tablist" aria-label="destnCRM demo sections">
+          <div class="crm-side-brand">destn<span>CRM</span></div>
+          <button class="crm-navbtn" role="tab" aria-selected="true" data-view="dash">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+            Dashboard
+          </button>
+          <button class="crm-navbtn" role="tab" aria-selected="false" data-view="partners">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 20a6 6 0 0 1 12 0M16 11a3 3 0 1 0 0-6M17 20a6 6 0 0 0-3-5.2"/></svg>
+            Partners
+          </button>
+          <button class="crm-navbtn" role="tab" aria-selected="false" data-view="ai">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9zM18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/></svg>
+            AI Assistant
+          </button>
+          <div class="crm-side-rule"></div>
+          <button class="crm-navbtn is-locked" tabindex="-1" aria-hidden="true">Contacts</button>
+          <button class="crm-navbtn is-locked" tabindex="-1" aria-hidden="true">Sales</button>
+          <button class="crm-navbtn is-locked" tabindex="-1" aria-hidden="true">Events</button>
+          <button class="crm-navbtn is-locked" tabindex="-1" aria-hidden="true">Marketing</button>
+          <button class="crm-navbtn is-locked" tabindex="-1" aria-hidden="true">Intelligence</button>
+          <div class="crm-user">
+            <div class="crm-avatar">MR</div>
+            <div>
+              <div class="crm-user-name">Morgan Reyes</div>
+              <div class="crm-user-org">Visit Bayshore</div>
+            </div>
+          </div>
+        </aside>
+
+        <main class="crm-main">
+          <!-- DASHBOARD -->
+          <section class="crm-view active" id="crmDash" role="tabpanel">
+            <div class="crm-hero">
+              <h4>Good morning, Morgan.</h4>
+              <p>Here's what's happening in your destination today.</p>
+            </div>
+
+            <div class="crm-stats">
+              <div class="crm-card">
+                <div class="crm-stat-lbl">Active Partners</div>
+                <div class="crm-stat-val">482</div>
+                <div class="crm-stat-foot">
+                  <span class="crm-delta up">+6</span>
+                  <svg class="crm-spark" viewBox="0 0 54 18" aria-hidden="true"><polyline fill="none" stroke="#1f6feb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="0,15 6,13 12,14 18,10 24,11 30,7 36,8 42,5 48,3 54,2"/></svg>
+                </div>
+              </div>
+              <div class="crm-card">
+                <div class="crm-stat-lbl">Website Sessions · 30d</div>
+                <div class="crm-stat-val">184.3K</div>
+                <div class="crm-stat-foot">
+                  <span class="crm-delta up">+12%</span>
+                  <svg class="crm-spark" viewBox="0 0 54 18" aria-hidden="true"><polyline fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="0,14 6,15 12,11 18,12 24,8 30,9 36,5 42,6 48,3 54,1"/></svg>
+                </div>
+              </div>
+              <div class="crm-card">
+                <div class="crm-stat-lbl">Events · Next 30 days</div>
+                <div class="crm-stat-val">24</div>
+                <div class="crm-stat-foot">
+                  <span class="crm-delta up">+4</span>
+                  <svg class="crm-spark" viewBox="0 0 54 18" aria-hidden="true"><polyline fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="0,13 6,12 12,13 18,9 24,10 30,7 36,8 42,6 48,5 54,3"/></svg>
+                </div>
+              </div>
+              <div class="crm-card">
+                <div class="crm-stat-lbl">Open Opportunities</div>
+                <div class="crm-stat-val">67</div>
+                <div class="crm-stat-foot">
+                  <span class="crm-delta up">+18</span>
+                  <svg class="crm-spark" viewBox="0 0 54 18" aria-hidden="true"><polyline fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="0,15 6,13 12,14 18,11 24,9 30,10 36,6 42,4 48,5 54,2"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="crm-cols">
+              <div class="crm-card">
+                <h5>Recent Activity <em>Today</em></h5>
+                <ul class="crm-feed">
+                  <li>
+                    <div class="fi" style="background:#eef2ff;color:#4338ca;">R</div>
+                    <div><div class="ft">New RFP for 500 attendees — Regional Dental Congress</div><div class="fs">Meridian Association Group · 2m ago</div></div>
+                  </li>
+                  <li>
+                    <div class="fi" style="background:#eaf2ff;color:#1f6feb;">AI</div>
+                    <div><div class="ft">AI suggested 3 listing updates</div><div class="fs">Lantern Bay Resort · 12m ago</div></div>
+                  </li>
+                  <li>
+                    <div class="fi" style="background:#fff3e0;color:#b45309;">C</div>
+                    <div><div class="ft">Campaign sent — Winter Escapes</div><div class="fs">14,820 recipients · 1h ago</div></div>
+                  </li>
+                  <li>
+                    <div class="fi" style="background:#e8f6ee;color:#15803d;">E</div>
+                    <div><div class="ft">New event added — Harbor Lights Parade</div><div class="fs">Bayshore Waterfront · 2h ago</div></div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="crm-card">
+                <h5>Group Sales Pipeline <em>67 open</em></h5>
+                <div class="crm-pipe">
+                  <div class="crm-pipe-top"><span>Leads</span><span>48</span></div>
+                  <div class="crm-pipe-track"><div class="crm-pipe-fill" data-w="100"></div></div>
+                </div>
+                <div class="crm-pipe">
+                  <div class="crm-pipe-top"><span>Prospects</span><span>32</span></div>
+                  <div class="crm-pipe-track"><div class="crm-pipe-fill" data-w="67"></div></div>
+                </div>
+                <div class="crm-pipe">
+                  <div class="crm-pipe-top"><span>Proposals</span><span>18</span></div>
+                  <div class="crm-pipe-track"><div class="crm-pipe-fill" data-w="38"></div></div>
+                </div>
+                <div class="crm-pipe" style="margin-bottom:0;">
+                  <div class="crm-pipe-top"><span>Definite</span><span>12</span></div>
+                  <div class="crm-pipe-track"><div class="crm-pipe-fill" data-w="25" style="background:#10b981;"></div></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- PARTNERS -->
+          <section class="crm-view" id="crmPartners" role="tabpanel">
+            <div class="crm-card">
+              <h5>Partners <em>482 active · 6 need review</em></h5>
+              <table class="crm-table">
+                <thead>
+                  <tr><th>Partner</th><th>Type</th><th>Status</th><th>Listing health</th></tr>
+                </thead>
+                <tbody id="crmPartnerRows"></tbody>
+              </table>
+            </div>
+            <p class="crm-demo-note" style="margin-top:12px;">Select any partner to see what the AI found.</p>
+          </section>
+
+          <!-- PARTNER DETAIL -->
+          <section class="crm-view" id="crmDetail" role="tabpanel">
+            <button class="crm-back" id="crmBack">&larr; Back to partners</button>
+            <div class="crm-detail-head">
+              <div>
+                <h4 id="crmDName">—</h4>
+                <p id="crmDMeta">—</p>
+              </div>
+              <span class="crm-chip" id="crmDStatus">Active</span>
+            </div>
+            <div class="crm-metrics">
+              <div class="crm-metric"><div class="mv" id="crmDViews">—</div><div class="ml">Listing views · 30d</div></div>
+              <div class="crm-metric"><div class="mv" id="crmDClicks">—</div><div class="ml">Website clicks</div></div>
+              <div class="crm-metric"><div class="mv" id="crmDDirs">—</div><div class="ml">Directions tapped</div></div>
+            </div>
+            <div class="crm-ai">
+              <div class="crm-ai-head">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1f6feb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/></svg>
+                <strong>AI found <span id="crmSuggCount">3</span> updates</strong>
+              </div>
+              <div class="crm-ai-sub" id="crmAiSub">Checked against the partner's own website and public sources this morning.</div>
+              <div id="crmSuggList"></div>
+              <div class="crm-ai-done" id="crmAiDone">All caught up — listing is current.</div>
+            </div>
+          </section>
+
+          <!-- AI ASSISTANT -->
+          <section class="crm-view" id="crmAI" role="tabpanel">
+            <div class="crm-card">
+              <h5>AI Assistant <em>Visit Bayshore</em></h5>
+              <div class="crm-chat" id="crmChat">
+                <div class="crm-msg them">Morning, Morgan. I reviewed 482 partner listings overnight and found 6 that have drifted out of date. Want the rundown?</div>
+              </div>
+              <div class="crm-ask" id="crmAsk">
+                <button data-a="stale">Which listings are stale?</button>
+                <button data-a="events">What's driving event traffic?</button>
+                <button data-a="rfp">Summarise open RFPs</button>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <p class="crm-demo-note">Sample destination and partner records. No real organization's data is shown.</p>
+
     <div class="crm-panel reveal" data-delay="3">
       <div class="crm-grid">
         <div class="crm-feature">
@@ -1252,6 +1638,194 @@
   document.querySelectorAll('.nav-links a').forEach(function(a){
     a.addEventListener('click', function(){ document.getElementById('navLinks').classList.remove('open'); });
   });
+
+  /* ---- destnCRM interactive demo ----------------------------------------
+     Entirely fictional: "Visit Bayshore" and its partners do not correspond
+     to any real destination organization or its data.
+  ------------------------------------------------------------------------*/
+  (function(){
+    var demo = document.querySelector('.crm-demo');
+    if(!demo) return;
+
+    var PARTNERS = [
+      { id:'lantern', name:'Lantern Bay Resort', type:'Hotel', town:'Bayshore', status:'Needs review',
+        views:'8,412', clicks:'1,286', dirs:'397', flagged:3,
+        sugg:[
+          { field:'Hours', was:'Closed Sundays', now:'Open daily, 7am–10pm', src:"Partner's website footer, updated 3 days ago" },
+          { field:'Amenities', was:'—', now:'Added: EV charging, pet friendly', src:'Detected on partner amenities page' },
+          { field:'Phone', was:'(555) 0142', now:'(555) 0188', src:'Changed on Google Business Profile' }
+        ] },
+      { id:'dockhouse', name:'The Dockhouse', type:'Restaurant', town:'Bayshore Harbor', status:'Needs review',
+        views:'5,903', clicks:'874', dirs:'612', flagged:2,
+        sugg:[
+          { field:'Menu link', was:'Broken link (404)', now:'Updated to current menu page', src:'Link check run this morning' },
+          { field:'Seasonal hours', was:'Winter hours', now:'Spring hours, opens 11am', src:"Partner's reservations page" }
+        ] },
+      { id:'seaglass', name:'Seaglass Inn', type:'Bed & Breakfast', town:'North Bayshore', status:'Active',
+        views:'3,140', clicks:'512', dirs:'188', flagged:0, sugg:[] },
+      { id:'maritime', name:'Bayshore Maritime Museum', type:'Attraction', town:'Bayshore', status:'Needs review',
+        views:'6,775', clicks:'1,042', dirs:'845', flagged:1,
+        sugg:[
+          { field:'Admission', was:'$12 adults', now:'$14 adults, under 6 free', src:'Partner ticketing page' }
+        ] },
+      { id:'tidewater', name:'Tidewater Brewing Co.', type:'Brewery', town:'Bayshore Harbor', status:'Active',
+        views:'4,268', clicks:'790', dirs:'433', flagged:0, sugg:[] },
+      { id:'capeharbor', name:'Cape Harbor Marina', type:'Marina', town:'South Bayshore', status:'Active',
+        views:'2,951', clicks:'361', dirs:'274', flagged:0, sugg:[] }
+    ];
+
+    var views = {
+      dash: document.getElementById('crmDash'),
+      partners: document.getElementById('crmPartners'),
+      detail: document.getElementById('crmDetail'),
+      ai: document.getElementById('crmAI')
+    };
+    var tabs = [].slice.call(demo.querySelectorAll('.crm-navbtn[data-view]'));
+
+    function show(name){
+      Object.keys(views).forEach(function(k){ views[k].classList.toggle('active', k === name); });
+      tabs.forEach(function(t){
+        /* the detail view belongs to Partners, so keep that tab lit */
+        var on = t.getAttribute('data-view') === name ||
+                 (name === 'detail' && t.getAttribute('data-view') === 'partners');
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      if(name === 'dash') fillPipes();
+    }
+
+    tabs.forEach(function(t){
+      t.addEventListener('click', function(){ show(t.getAttribute('data-view')); });
+    });
+
+    /* pipeline bars animate from zero each time the dashboard is shown */
+    function fillPipes(){
+      demo.querySelectorAll('.crm-pipe-fill').forEach(function(bar){
+        bar.style.width = '0%';
+        var w = bar.getAttribute('data-w');
+        if(reduceMotion){ bar.style.width = w + '%'; return; }
+        setTimeout(function(){ bar.style.width = w + '%'; }, 60);
+      });
+    }
+
+    /* ---- partners table ---- */
+    var rows = document.getElementById('crmPartnerRows');
+    PARTNERS.forEach(function(p){
+      var tr = document.createElement('tr');
+      tr.className = 'crm-row';
+      tr.innerHTML =
+        '<td><div class="crm-pname">' + p.name + '</div><div class="crm-psub">' + p.town + '</div></td>' +
+        '<td>' + p.type + '</td>' +
+        '<td><span class="crm-chip' + (p.status === 'Active' ? '' : ' warn') + '">' + p.status + '</span></td>' +
+        '<td>' + (p.flagged
+            ? '<span class="crm-flag">' + p.flagged + ' AI update' + (p.flagged > 1 ? 's' : '') + '</span>'
+            : '<span style="color:#94a3b8;font-size:0.78rem;">Up to date</span>') + '</td>';
+      tr.addEventListener('click', function(){ openPartner(p); });
+      rows.appendChild(tr);
+    });
+
+    /* ---- partner detail ---- */
+    function openPartner(p){
+      document.getElementById('crmDName').textContent = p.name;
+      document.getElementById('crmDMeta').textContent = p.type + ' · ' + p.town;
+      var st = document.getElementById('crmDStatus');
+      st.textContent = p.status;
+      st.className = 'crm-chip' + (p.status === 'Active' ? '' : ' warn');
+      document.getElementById('crmDViews').textContent = p.views;
+      document.getElementById('crmDClicks').textContent = p.clicks;
+      document.getElementById('crmDDirs').textContent = p.dirs;
+      document.getElementById('crmSuggCount').textContent = p.sugg.length;
+
+      var list = document.getElementById('crmSuggList');
+      var done = document.getElementById('crmAiDone');
+      var sub = document.getElementById('crmAiSub');
+      list.innerHTML = '';
+      done.classList.remove('show');
+
+      if(!p.sugg.length){
+        sub.textContent = 'Last checked this morning. Nothing has drifted since the last review.';
+        done.classList.add('show');
+      } else {
+        sub.textContent = "Checked against the partner's own website and public sources this morning.";
+        p.sugg.forEach(function(s){
+          var card = document.createElement('div');
+          card.className = 'crm-sugg';
+          card.innerHTML =
+            '<div class="crm-sugg-field">' + s.field + '</div>' +
+            '<div class="crm-sugg-row">' +
+              (s.was !== '—' ? '<span class="crm-was">' + s.was + '</span>' : '') +
+              '<span class="crm-now">' + s.now + '</span>' +
+            '</div>' +
+            '<div class="crm-src">' + s.src + '</div>' +
+            '<div class="crm-sugg-acts">' +
+              '<button class="crm-btn primary" data-act="accept">Accept</button>' +
+              '<button class="crm-btn ghost" data-act="dismiss">Dismiss</button>' +
+            '</div>';
+          card.querySelectorAll('[data-act]').forEach(function(b){
+            b.addEventListener('click', function(){ resolve(card, p); });
+          });
+          list.appendChild(card);
+        });
+      }
+      show('detail');
+    }
+
+    function resolve(card, p){
+      card.classList.add('resolved');
+      setTimeout(function(){
+        card.remove();
+        var left = document.getElementById('crmSuggList').children.length;
+        document.getElementById('crmSuggCount').textContent = left;
+        if(!left){
+          document.getElementById('crmAiSub').textContent = 'Listing updated. Nothing else outstanding.';
+          document.getElementById('crmAiDone').classList.add('show');
+        }
+      }, reduceMotion ? 0 : 300);
+    }
+
+    document.getElementById('crmBack').addEventListener('click', function(){ show('partners'); });
+
+    /* ---- AI assistant ---- */
+    var ANSWERS = {
+      stale: 'Six listings have drifted. The ones worth your time:<ul>' +
+             '<li><strong>Lantern Bay Resort</strong> — hours, phone and amenities all changed</li>' +
+             '<li><strong>The Dockhouse</strong> — menu link is returning a 404</li>' +
+             '<li><strong>Bayshore Maritime Museum</strong> — admission pricing went up</li></ul>' +
+             'I can apply all nine updates, or you can review them one at a time.',
+      events: 'Event pages drove <strong>31% of site sessions</strong> this month, up from 24%. ' +
+              'Harbor Lights Parade alone accounts for 11,400 views — worth pushing partner packages around it.',
+      rfp: 'Nine open RFPs, <strong>2,840 room nights</strong> in play.<ul>' +
+           '<li>Regional Dental Congress — 500 attendees, decision in 3 weeks</li>' +
+           '<li>Coastal Growers Summit — 220 attendees, awaiting partner responses</li></ul>' +
+           'Four partner hotels have not responded to the Dental Congress distribution yet.'
+    };
+
+    var chat = document.getElementById('crmChat');
+    var ask = document.getElementById('crmAsk');
+
+    ask.addEventListener('click', function(e){
+      var btn = e.target.closest('button[data-a]');
+      if(!btn || btn.disabled) return;
+      var key = btn.getAttribute('data-a');
+      btn.disabled = true;
+
+      var mine = document.createElement('div');
+      mine.className = 'crm-msg me';
+      mine.textContent = btn.textContent;
+      chat.appendChild(mine);
+
+      var typing = document.createElement('div');
+      typing.className = 'crm-msg them crm-typing';
+      typing.innerHTML = '<span></span><span></span><span></span>';
+      chat.appendChild(typing);
+
+      setTimeout(function(){
+        typing.classList.remove('crm-typing');
+        typing.innerHTML = ANSWERS[key];
+      }, reduceMotion ? 0 : 650);
+    });
+
+    fillPipes();
+  })();
 
   /* ---- pilot CTA drops a label into the contact form so enquiries arrive
          tagged in the sheet instead of arriving blank ---- */
