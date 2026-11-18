@@ -529,12 +529,104 @@
   .crm-view{display:none;}
   .crm-view.active{display:block;}
 
+  /* Coastal hero — ported from the app's illustrated scene, with the clouds
+     and sun glint given gentle motion. */
   .crm-hero{
-    border-radius:12px;padding:22px 24px;color:#fff;margin-bottom:16px;
-    background:linear-gradient(110deg,#0e1a2e 0%,#1c2d4a 52%,#2d5f8a 100%);
+    position:relative;border-radius:12px;overflow:hidden;margin-bottom:16px;
+    height:148px;
   }
-  .crm-hero h4{color:#fff;font-size:1.3rem;margin-bottom:3px;letter-spacing:-0.3px;}
-  .crm-hero p{color:rgba(255,255,255,0.82);font-size:0.84rem;margin:0;}
+  /* direct child only: the date badge has its own inline icon that must not
+     be absolutely positioned and stretched across the hero */
+  .crm-hero > svg{position:absolute;inset:0;width:100%;height:100%;}
+  .crm-hero-wash{
+    position:absolute;inset:0;
+    background:linear-gradient(100deg,rgba(14,26,46,0.82) 0%,rgba(14,26,46,0.42) 48%,rgba(14,26,46,0.05) 100%);
+  }
+  .crm-hero-txt{position:relative;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 26px;}
+  .crm-hero-txt h4{color:#fff;font-size:1.35rem;margin-bottom:3px;letter-spacing:-0.4px;}
+  .crm-hero-txt p{color:rgba(255,255,255,0.88);font-size:0.84rem;margin:0;}
+  .crm-hero-date{
+    position:absolute;right:14px;top:12px;display:flex;align-items:center;gap:6px;
+    background:rgba(0,0,0,0.3);color:#fff;font-size:0.72rem;font-weight:600;
+    padding:5px 10px;border-radius:9px;backdrop-filter:blur(4px);
+  }
+  .crm-cloud{animation:crmDrift 46s linear infinite;}
+  .crm-cloud.c2{animation-duration:66s;animation-delay:-14s;}
+  .crm-cloud.c3{animation-duration:84s;animation-delay:-30s;}
+  @keyframes crmDrift{from{transform:translateX(-170px);}to{transform:translateX(1260px);}}
+  .crm-glint{animation:crmShimmer 5.5s ease-in-out infinite;}
+  @keyframes crmShimmer{0%,100%{opacity:.38;}50%{opacity:.68;}}
+
+  /* Pipeline chevrons */
+  .crm-chev-row{display:flex;margin-bottom:14px;}
+  .crm-chev{
+    flex:1;padding:11px 8px 11px 18px;color:#fff;position:relative;
+    clip-path:polygon(0 0,calc(100% - 11px) 0,100% 50%,calc(100% - 11px) 100%,0 100%,11px 50%);
+    margin-left:-9px;
+  }
+  .crm-chev:first-child{margin-left:0;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 50%,calc(100% - 11px) 100%,0 100%);padding-left:12px;}
+  .crm-chev .cv{font-size:1.15rem;font-weight:800;line-height:1;}
+  .crm-chev .cl{font-size:0.68rem;color:rgba(255,255,255,0.86);margin-top:2px;}
+  .crm-kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px;border-top:1px solid var(--d-line);padding-top:12px;}
+  .crm-kpi .kv{font-size:1.25rem;font-weight:800;color:var(--d-ink);letter-spacing:-0.4px;line-height:1;}
+  .crm-kpi .kl{font-size:0.7rem;color:var(--d-muted);margin-top:3px;}
+
+  /* Traffic chart */
+  .crm-legend{display:flex;gap:14px;font-size:0.7rem;color:var(--d-muted);margin-bottom:8px;}
+  .crm-legend span{display:inline-flex;align-items:center;gap:5px;}
+  .crm-legend i{width:7px;height:7px;border-radius:50%;display:inline-block;}
+  .crm-chart{width:100%;height:120px;display:block;}
+
+  /* Donut */
+  .crm-donut-wrap{display:flex;align-items:center;gap:16px;}
+  .crm-donut{position:relative;width:112px;height:112px;flex-shrink:0;}
+  .crm-donut svg{transform:rotate(-90deg);}
+  .crm-donut circle{transition:stroke-dashoffset 1s cubic-bezier(.22,.61,.36,1);}
+  .crm-donut-mid{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;
+  }
+  .crm-donut-mid b{font-size:1.3rem;font-weight:800;color:var(--d-ink);line-height:1;letter-spacing:-0.5px;}
+  .crm-donut-mid i{font-style:normal;font-size:0.63rem;color:var(--d-muted);line-height:1.25;margin-top:3px;}
+  .crm-keys{list-style:none;margin:0;flex:1;font-size:0.76rem;}
+  .crm-keys li{display:flex;align-items:center;gap:7px;margin-bottom:7px;}
+  .crm-keys li:last-child{margin-bottom:0;}
+  .crm-keys i{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+  .crm-keys .kn{flex:1;color:#475569;}
+  .crm-keys .kq{font-weight:800;color:var(--d-ink);}
+
+  /* Top listings */
+  .crm-listing{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1.5fr) auto;align-items:center;gap:11px;margin-bottom:11px;}
+  .crm-listing:last-child{margin-bottom:0;}
+  .crm-listing .ln{font-size:0.79rem;font-weight:700;color:var(--d-ink);line-height:1.3;}
+  .crm-listing .lt{font-size:0.69rem;color:var(--d-muted);}
+  .crm-bar{height:9px;border-radius:5px;background:#eef1f7;overflow:hidden;}
+  .crm-bar-fill{
+    height:100%;border-radius:5px;width:0;
+    background:linear-gradient(90deg,#1f6feb,#56b2f5);
+    transition:width 1s cubic-bezier(.22,.61,.36,1);
+  }
+  .crm-listing .lv{font-size:0.78rem;font-weight:800;color:var(--d-ink);text-align:right;min-width:52px;}
+
+  /* Traffic sources */
+  .crm-srcbar{display:flex;height:11px;border-radius:6px;overflow:hidden;margin-bottom:13px;}
+  .crm-srcbar i{display:block;height:100%;transition:width .9s cubic-bezier(.22,.61,.36,1);}
+
+  /* Events */
+  .crm-ev{display:flex;align-items:center;gap:10px;margin-bottom:11px;}
+  .crm-ev:last-child{margin-bottom:0;}
+  .crm-date{
+    width:40px;flex-shrink:0;border:1px solid var(--d-line);border-radius:8px;
+    text-align:center;padding:4px 0;background:#fff;
+  }
+  .crm-date .m{font-size:0.56rem;font-weight:800;letter-spacing:0.7px;color:var(--d-brand);line-height:1;}
+  .crm-date .d{font-size:0.95rem;font-weight:800;color:var(--d-ink);line-height:1.15;}
+  .crm-ev-t{font-size:0.78rem;font-weight:700;color:var(--d-ink);line-height:1.3;}
+  .crm-ev-w{font-size:0.69rem;color:var(--d-muted);}
+
+  .crm-grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+  .crm-grid-ab{display:grid;grid-template-columns:1.55fr 1fr;gap:12px;margin-bottom:12px;}
+  .crm-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
 
   .crm-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;}
   .crm-card{background:#fff;border:1px solid var(--d-line);border-radius:10px;padding:14px;}
@@ -655,8 +747,9 @@
   }
 
   @media(prefers-reduced-motion:reduce){
-    .crm-pipe-fill,.crm-sugg{transition:none;}
-    .crm-typing span{animation:none;opacity:.6;}
+    .crm-pipe-fill,.crm-sugg,.crm-bar-fill,.crm-srcbar i,.crm-donut circle{transition:none;}
+    .crm-typing span,.crm-cloud,.crm-glint{animation:none;}
+    .crm-glint{opacity:.5;}
   }
 
   @media(max-width:860px){
@@ -665,9 +758,14 @@
     .crm-side-brand,.crm-side-rule,.crm-user,.crm-navbtn.is-locked{display:none;}
     .crm-navbtn{width:auto;white-space:nowrap;padding:7px 12px;}
     .crm-stats{grid-template-columns:repeat(2,1fr);}
-    .crm-cols{grid-template-columns:1fr;}
+    .crm-cols,.crm-grid2,.crm-grid-ab,.crm-grid3{grid-template-columns:1fr;}
     .crm-metrics{grid-template-columns:1fr;}
     .crm-msg{max-width:92%;}
+    .crm-hero{height:128px;}
+    .crm-hero-date{display:none;}
+    .crm-chev{padding-left:14px;}
+    .crm-chev .cv{font-size:1rem;}
+    .crm-donut-wrap{gap:12px;}
   }
 
   /* ===== INTERACTIONS ===== */
@@ -1201,8 +1299,78 @@
           <!-- DASHBOARD -->
           <section class="crm-view active" id="crmDash" role="tabpanel">
             <div class="crm-hero">
-              <h4>Good morning, Morgan.</h4>
-              <p>Here's what's happening in your destination today.</p>
+              <svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs>
+                  <linearGradient id="csSky" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#3b4f7d"/><stop offset="0.33" stop-color="#c27a8e"/>
+                    <stop offset="0.66" stop-color="#f7b267"/><stop offset="1" stop-color="#fde2a7"/>
+                  </linearGradient>
+                  <linearGradient id="csSea" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#5b7fa6"/><stop offset="1" stop-color="#2d4a6e"/>
+                  </linearGradient>
+                  <radialGradient id="csSun">
+                    <stop offset="0" stop-color="#ffe8a8"/>
+                    <stop offset="0.35" stop-color="#ffe8a8" stop-opacity="0.55"/>
+                    <stop offset="1" stop-color="#ffe8a8" stop-opacity="0"/>
+                  </radialGradient>
+                  <clipPath id="csClip"><rect width="1200" height="300"/></clipPath>
+                </defs>
+                <g clip-path="url(#csClip)">
+                  <rect width="1200" height="300" fill="url(#csSky)"/>
+                  <circle cx="900" cy="168" r="150" fill="url(#csSun)"/>
+                  <circle cx="900" cy="168" r="26" fill="#ffe8a8"/>
+                  <g fill="#fff" opacity="0.18">
+                    <ellipse class="crm-cloud" cx="200" cy="60" rx="140" ry="12"/>
+                    <ellipse class="crm-cloud c2" cx="560" cy="92" rx="190" ry="10"/>
+                    <ellipse class="crm-cloud c3" cx="980" cy="48" rx="120" ry="9"/>
+                  </g>
+                  <rect y="170" width="1200" height="130" fill="url(#csSea)"/>
+                  <g class="crm-glint" fill="#ffe8a8">
+                    <rect x="870" y="178" width="60" height="2" rx="1"/>
+                    <rect x="864" y="187" width="72" height="2" rx="1"/>
+                    <rect x="858" y="196" width="84" height="2" rx="1"/>
+                    <rect x="852" y="205" width="96" height="2" rx="1"/>
+                    <rect x="846" y="214" width="108" height="2" rx="1"/>
+                    <rect x="840" y="223" width="120" height="2" rx="1"/>
+                    <rect x="834" y="232" width="132" height="2" rx="1"/>
+                  </g>
+                  <g fill="#1d2333">
+                    <rect x="510" y="150" width="490" height="7"/>
+                    <rect x="510" y="146" width="490" height="2"/>
+                    <rect x="524" y="157" width="3" height="28"/><rect x="566" y="157" width="3" height="28"/>
+                    <rect x="608" y="157" width="3" height="28"/><rect x="650" y="157" width="3" height="28"/>
+                    <rect x="692" y="157" width="3" height="28"/><rect x="734" y="157" width="3" height="28"/>
+                    <rect x="776" y="157" width="3" height="28"/><rect x="818" y="157" width="3" height="28"/>
+                    <rect x="860" y="157" width="3" height="28"/><rect x="902" y="157" width="3" height="28"/>
+                    <rect x="944" y="157" width="3" height="28"/><rect x="986" y="157" width="3" height="28"/>
+                    <rect x="930" y="122" width="56" height="26"/>
+                    <polygon points="924,124 958,104 992,124"/>
+                    <rect x="560" y="132" width="3" height="16"/>
+                    <rect x="700" y="132" width="3" height="16"/>
+                    <rect x="840" y="132" width="3" height="16"/>
+                  </g>
+                  <g stroke="#fff" stroke-opacity="0.35" stroke-width="2" fill="none">
+                    <path d="M0 236 Q150 228 300 236 T600 236 T900 236 T1200 236"/>
+                    <path d="M0 258 Q150 250 300 258 T600 258 T900 258 T1200 258"/>
+                  </g>
+                  <path d="M0 300 L0 240 Q120 214 260 236 Q340 248 420 300 Z" fill="#c9a77a"/>
+                  <g stroke="#1d2333" stroke-opacity="0.55" stroke-width="2" stroke-linecap="round">
+                    <line x1="34" y1="256" x2="28" y2="228"/><line x1="76" y1="256" x2="76" y2="222"/>
+                    <line x1="118" y1="256" x2="124" y2="230"/><line x1="160" y1="256" x2="154" y2="226"/>
+                    <line x1="202" y1="256" x2="202" y2="232"/><line x1="244" y1="256" x2="250" y2="228"/>
+                    <line x1="286" y1="256" x2="280" y2="236"/><line x1="328" y1="256" x2="328" y2="240"/>
+                  </g>
+                </g>
+              </svg>
+              <div class="crm-hero-wash"></div>
+              <div class="crm-hero-date">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fcd34d" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
+                Tuesday, April 14
+              </div>
+              <div class="crm-hero-txt">
+                <h4>Good morning, Morgan.</h4>
+                <p>Here's what's happening in your destination today.</p>
+              </div>
             </div>
 
             <div class="crm-stats">
@@ -1240,13 +1408,79 @@
               </div>
             </div>
 
-            <div class="crm-cols">
+            <!-- Pipeline + website traffic -->
+            <div class="crm-grid2">
+              <div class="crm-card">
+                <h5>Sales Pipeline <em>67 open</em></h5>
+                <div class="crm-chev-row">
+                  <div class="crm-chev" style="background:#1c2d4a;"><div class="cv">48</div><div class="cl">Leads</div></div>
+                  <div class="crm-chev" style="background:#1f6feb;"><div class="cv">32</div><div class="cl">Prospects</div></div>
+                  <div class="crm-chev" style="background:#56b2f5;"><div class="cv">18</div><div class="cl">Proposals</div></div>
+                  <div class="crm-chev" style="background:#10b981;"><div class="cv">12</div><div class="cl">Definite</div></div>
+                </div>
+                <div class="crm-kpis">
+                  <div class="crm-kpi"><div class="kv">25%</div><div class="kl">Lead → Definite rate <span style="color:#94a3b8;">(12 mo.)</span></div></div>
+                  <div class="crm-kpi"><div class="kv">9 days</div><div class="kl">Avg. RFP response time</div></div>
+                </div>
+              </div>
+
+              <div class="crm-card">
+                <h5>Website Traffic <em>Last 12 months</em></h5>
+                <div class="crm-legend">
+                  <span><i style="background:#1f6feb;"></i>Sessions</span>
+                  <span><i style="background:#10b981;"></i>Users</span>
+                </div>
+                <svg class="crm-chart" viewBox="0 0 320 120" preserveAspectRatio="none" aria-hidden="true">
+                  <line x1="0" y1="30" x2="320" y2="30" stroke="#eef1f7" stroke-width="1"/>
+                  <line x1="0" y1="60" x2="320" y2="60" stroke="#eef1f7" stroke-width="1"/>
+                  <line x1="0" y1="90" x2="320" y2="90" stroke="#eef1f7" stroke-width="1"/>
+                  <polyline fill="none" stroke="#1f6feb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                    points="4,96 32,88 61,92 90,74 119,80 148,62 177,68 206,48 235,52 264,34 293,28 316,18"/>
+                  <polyline fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                    points="4,106 32,101 61,104 90,92 119,96 148,84 177,88 206,74 235,78 264,64 293,58 316,50"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Top listings + engagement -->
+            <div class="crm-grid-ab">
+              <div class="crm-card">
+                <h5>Top Partner Listings <em>Last 30 days</em></h5>
+                <div id="crmTopList"></div>
+              </div>
+
+              <div class="crm-card">
+                <h5>Partner Engagement</h5>
+                <div class="crm-donut-wrap">
+                  <div class="crm-donut">
+                    <svg viewBox="0 0 120 120" width="112" height="112" aria-hidden="true">
+                      <circle cx="60" cy="60" r="46" fill="none" stroke="#eef1f7" stroke-width="15"/>
+                      <circle class="dseg" cx="60" cy="60" r="46" fill="none" stroke="#22c55e" stroke-width="15"
+                              stroke-dasharray="289" stroke-dashoffset="289" data-pct="73"/>
+                      <circle class="dseg" cx="60" cy="60" r="46" fill="none" stroke="#f59e0b" stroke-width="15"
+                              stroke-dasharray="289" stroke-dashoffset="289" data-pct="17" data-rot="73"/>
+                      <circle class="dseg" cx="60" cy="60" r="46" fill="none" stroke="#8b5cf6" stroke-width="15"
+                              stroke-dasharray="289" stroke-dashoffset="289" data-pct="10" data-rot="90"/>
+                    </svg>
+                    <div class="crm-donut-mid"><b>73%</b><i>Engaged<br>partners</i></div>
+                  </div>
+                  <ul class="crm-keys">
+                    <li><i style="background:#22c55e;"></i><span class="kn">Engaged</span><span class="kq">117</span></li>
+                    <li><i style="background:#f59e0b;"></i><span class="kn">Needs attention</span><span class="kq">28</span></li>
+                    <li><i style="background:#8b5cf6;"></i><span class="kn">Inactive</span><span class="kq">15</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Activity + sources + events -->
+            <div class="crm-grid3">
               <div class="crm-card">
                 <h5>Recent Activity <em>Today</em></h5>
                 <ul class="crm-feed">
                   <li>
                     <div class="fi" style="background:#eef2ff;color:#4338ca;">R</div>
-                    <div><div class="ft">New RFP for 500 attendees — Regional Dental Congress</div><div class="fs">Meridian Association Group · 2m ago</div></div>
+                    <div><div class="ft">New RFP — Regional Dental Congress</div><div class="fs">Meridian Association Group · 2m ago</div></div>
                   </li>
                   <li>
                     <div class="fi" style="background:#eaf2ff;color:#1f6feb;">AI</div>
@@ -1258,28 +1492,46 @@
                   </li>
                   <li>
                     <div class="fi" style="background:#e8f6ee;color:#15803d;">E</div>
-                    <div><div class="ft">New event added — Harbor Lights Parade</div><div class="fs">Bayshore Waterfront · 2h ago</div></div>
+                    <div><div class="ft">New event — Harbor Lights Parade</div><div class="fs">Bayshore Waterfront · 2h ago</div></div>
                   </li>
                 </ul>
               </div>
 
               <div class="crm-card">
-                <h5>Group Sales Pipeline <em>67 open</em></h5>
-                <div class="crm-pipe">
-                  <div class="crm-pipe-top"><span>Leads</span><span>48</span></div>
-                  <div class="crm-pipe-track"><div class="crm-pipe-fill" data-w="100"></div></div>
+                <h5>Traffic Sources <em>30d</em></h5>
+                <div class="crm-srcbar" id="crmSrcBar">
+                  <i style="background:#1f6feb;" data-w="46"></i>
+                  <i style="background:#7c3aed;" data-w="18"></i>
+                  <i style="background:#19b3a6;" data-w="15"></i>
+                  <i style="background:#f59e0b;" data-w="11"></i>
+                  <i style="background:#94a3b8;" data-w="10"></i>
                 </div>
-                <div class="crm-pipe">
-                  <div class="crm-pipe-top"><span>Prospects</span><span>32</span></div>
-                  <div class="crm-pipe-track"><div class="crm-pipe-fill" data-w="67"></div></div>
+                <ul class="crm-keys">
+                  <li><i style="background:#1f6feb;"></i><span class="kn">Organic search</span><span class="kq">46%</span></li>
+                  <li><i style="background:#7c3aed;"></i><span class="kn">Paid social</span><span class="kq">18%</span></li>
+                  <li><i style="background:#19b3a6;"></i><span class="kn">Direct</span><span class="kq">15%</span></li>
+                  <li><i style="background:#f59e0b;"></i><span class="kn">Email</span><span class="kq">11%</span></li>
+                  <li><i style="background:#94a3b8;"></i><span class="kn">Referral</span><span class="kq">10%</span></li>
+                </ul>
+              </div>
+
+              <div class="crm-card">
+                <h5>Upcoming Events <em>Next 30 days</em></h5>
+                <div class="crm-ev">
+                  <div class="crm-date"><div class="m">APR</div><div class="d">19</div></div>
+                  <div><div class="crm-ev-t">Harbor Lights Parade</div><div class="crm-ev-w">Bayshore Waterfront</div></div>
                 </div>
-                <div class="crm-pipe">
-                  <div class="crm-pipe-top"><span>Proposals</span><span>18</span></div>
-                  <div class="crm-pipe-track"><div class="crm-pipe-fill" data-w="38"></div></div>
+                <div class="crm-ev">
+                  <div class="crm-date"><div class="m">APR</div><div class="d">26</div></div>
+                  <div><div class="crm-ev-t">Seaglass Spring Market</div><div class="crm-ev-w">North Bayshore Green</div></div>
                 </div>
-                <div class="crm-pipe" style="margin-bottom:0;">
-                  <div class="crm-pipe-top"><span>Definite</span><span>12</span></div>
-                  <div class="crm-pipe-track"><div class="crm-pipe-fill" data-w="25" style="background:#10b981;"></div></div>
+                <div class="crm-ev">
+                  <div class="crm-date"><div class="m">MAY</div><div class="d">03</div></div>
+                  <div><div class="crm-ev-t">Hospitality Partner Mixer</div><div class="crm-ev-w">Lantern Bay Resort</div></div>
+                </div>
+                <div class="crm-ev">
+                  <div class="crm-date"><div class="m">MAY</div><div class="d">11</div></div>
+                  <div><div class="crm-ev-t">Coastal Growers Summit</div><div class="crm-ev-w">Bayshore Conference Center</div></div>
                 </div>
               </div>
             </div>
@@ -1697,15 +1949,53 @@
       t.addEventListener('click', function(){ show(t.getAttribute('data-view')); });
     });
 
-    /* pipeline bars animate from zero each time the dashboard is shown */
+    /* Charts animate up from zero each time the dashboard is shown, so the
+       motion replays rather than only firing on first paint. */
     function fillPipes(){
-      demo.querySelectorAll('.crm-pipe-fill').forEach(function(bar){
-        bar.style.width = '0%';
-        var w = bar.getAttribute('data-w');
-        if(reduceMotion){ bar.style.width = w + '%'; return; }
-        setTimeout(function(){ bar.style.width = w + '%'; }, 60);
-      });
+      var bars = demo.querySelectorAll('.crm-bar-fill, .crm-srcbar i');
+      var segs = demo.querySelectorAll('.crm-donut .dseg');
+      var CIRC = 289; /* 2 * PI * r, r = 46 */
+
+      bars.forEach(function(b){ b.style.width = '0%'; });
+      segs.forEach(function(s){ s.style.strokeDashoffset = CIRC; });
+
+      function run(){
+        bars.forEach(function(b){ b.style.width = b.getAttribute('data-w') + '%'; });
+        segs.forEach(function(s){
+          var pct = parseFloat(s.getAttribute('data-pct')) || 0;
+          var rot = parseFloat(s.getAttribute('data-rot')) || 0;
+          s.style.strokeDashoffset = CIRC * (1 - pct / 100);
+          /* each later arc starts where the previous one ended */
+          s.style.transform = 'rotate(' + (rot * 3.6) + 'deg)';
+          s.style.transformOrigin = '60px 60px';
+        });
+      }
+
+      if(reduceMotion) run(); else setTimeout(run, 70);
     }
+
+    /* Top partner listings, ranked by views like the real dashboard */
+    (function topListings(){
+      var host = document.getElementById('crmTopList');
+      if(!host) return;
+      var top = [
+        { name:'Lantern Bay Resort', type:'Hotel · Bayshore', views:8412, chg:'+14%' },
+        { name:'Bayshore Maritime Museum', type:'Attraction · Bayshore', views:6775, chg:'+9%' },
+        { name:'The Dockhouse', type:'Restaurant · Bayshore Harbor', views:5903, chg:'+6%' },
+        { name:'Tidewater Brewing Co.', type:'Brewery · Bayshore Harbor', views:4268, chg:'+21%' },
+        { name:'Seaglass Inn', type:'B&B · North Bayshore', views:3140, chg:'+4%' }
+      ];
+      var max = top[0].views;
+      top.forEach(function(t){
+        var row = document.createElement('div');
+        row.className = 'crm-listing';
+        row.innerHTML =
+          '<div><div class="ln">' + t.name + '</div><div class="lt">' + t.type + '</div></div>' +
+          '<div class="crm-bar"><div class="crm-bar-fill" data-w="' + Math.round(t.views / max * 100) + '"></div></div>' +
+          '<div class="lv">' + t.views.toLocaleString() + ' <span style="color:#16a34a;font-size:0.68rem;">' + t.chg + '</span></div>';
+        host.appendChild(row);
+      });
+    })();
 
     /* ---- partners table ---- */
     var rows = document.getElementById('crmPartnerRows');
